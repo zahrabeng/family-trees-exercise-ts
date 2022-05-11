@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
+    "makeGraph": "ts-node src/index.ts > graph.gv",
     "lint": "eslint src",
     "format": "prettier --write src",
     "format:check": "prettier --check src",
