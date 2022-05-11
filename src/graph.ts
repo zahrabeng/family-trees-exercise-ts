@@ -1,3 +1,5 @@
+import { pick, randomWord } from "./randomUtils";
+
 export interface Node {
     children: Node[];
     value: string;
@@ -101,20 +103,4 @@ export function toGraphViz(topNode: Node): void {
     breadthFirstTraverse(topNode, (n: Node) => console.log('"' + n.value + '"'));
     breadthFirstTraverse(topNode, (n: Node) => n.children.forEach(c => console.log(`    "${n.value}" -> "${c.value}"`)))
     console.log("}")
-}
-function randomWord(): string {
-    const consonants: string[] = "bcdfghjklmnpqrstvwxyz".split("")
-    const vowels: string[] = "aeiou".split("")
-    const letters: string[] = [];
-    letters.push(pick(consonants).toUpperCase())
-    letters.push(pick(vowels))
-    letters.push(pick(consonants))
-    letters.push(pick(vowels))
-    letters.push(pick(consonants))
-
-    return letters.join("");
-}
-function pick<T>(arr: T[]): T {
-    const ix = Math.floor(Math.random() * arr.length);
-    return arr[ix];
 }
