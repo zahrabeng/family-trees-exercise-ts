@@ -14,16 +14,20 @@ async function mainProgram() {
   printBanner("STARK");
   printPersonTreeAsAscii(createStarkTree());
 
-  printBanner("LANNISTER");
-  printPersonTreeAsAscii(createLannisterTree());
+  // Uncomment to test your work..
 
-  printBanner("All people in STARK")
-  logAllPeopleInTree(createStarkTree());
+  // printBanner("LANNISTER");
+  // printPersonTreeAsAscii(createLannisterTree());
 
-  printBanner("WITH STACK - british royals")
-  logAllPeopleInTree(createBritishSuccessionTree());
-  printBanner("WITH QUEUE - british royals")
-  logAllPeopleInTreeWithQueue(createBritishSuccessionTree());
+  // printBanner("All people in STARK")
+  // logAllPeopleInTree(createStarkTree());
+
+  // printBanner("WITH STACK - british royals")
+  // logAllPeopleInTree(createBritishSuccessionTree());
+  // printBanner("WITH QUEUE - british royals")
+  // logAllPeopleInTreeWithQueue(createBritishSuccessionTree());
+
+  // You'll need to add more test code for later exercises, too.
 }
 
 mainProgram();
