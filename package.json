@@ -1,5 +1,5 @@
 {
-  "name": "student-grading-exercise-solution-ts",
+  "name": "family-trees-game-of-thrones-exercise-ts",
   "version": "1.0.0",
   "main": "index.js",
   "license": "CC-BY-NC-ND-4.0",
@@ -29,5 +29,7 @@
     "test:watch": "jest --watchAll",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {}
+  "dependencies": {
+    "oo-ascii-tree": "^1.58.0"
+  }
 }

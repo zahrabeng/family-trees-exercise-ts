@@ -1,9 +1,5 @@
+import { Person } from "./personTypes";
 import { pick, randomWord } from "./randomUtils";
-
-export interface Node {
-    children: Node[];
-    value: string;
-}
 
 // === Possible exercises:
 // Give the algorithms for most of these, and the scholars have to implement the code.
@@ -22,9 +18,9 @@ export interface Node {
 // TODO: worry about difficulties of debugging a react app if the algorithm gets into an infinite loop.
 
 
-export function createRandomTree(depth: number): Node {
-    const children: Node[] = []
-    const node = { value: randomWord(), children };
+export function createRandomTree(depth: number): Person {
+    const children: Person[] = []
+    const node = { name: randomWord(), children };
     if (depth < 0) {
         return node;
     }
@@ -34,16 +30,16 @@ export function createRandomTree(depth: number): Node {
     }
     return node;
 }
-type Action = (node: Node) => void;
+type Action = (node: Person) => void;
 
-export function findInTree(tree: Node, soughtName: string): Node | null {
+export function findInTree(tree: Person, soughtName: string): Person | null {
     let remainingNodesToCheck = [tree];
     while (remainingNodesToCheck.length > 0) {
-        const current: Node | undefined = remainingNodesToCheck.pop()
+        const current: Person | undefined = remainingNodesToCheck.pop()
         if (!current) {
             continue;
         }
-        if (current.value === soughtName) {
+        if (current.name === soughtName) {
             return current;
         }
         remainingNodesToCheck.push(...current?.children)
@@ -52,14 +48,14 @@ export function findInTree(tree: Node, soughtName: string): Node | null {
     return null;
 }
 
-export function isChildOf(givenParent: Node, givenChildName: string): boolean {
+export function isChildOf(givenParent: Person, givenChildName: string): boolean {
     let remainingNodesToCheck = [givenParent];
     while (remainingNodesToCheck.length > 0) {
-        const current: Node | undefined = remainingNodesToCheck.pop()
+        const current: Person | undefined = remainingNodesToCheck.pop()
         if (!current) {
             continue;
         }
-        if (current.value === givenChildName) {
+        if (current.name === givenChildName) {
             return true;
         }
         remainingNodesToCheck.push(...current?.children)
@@ -67,27 +63,27 @@ export function isChildOf(givenParent: Node, givenChildName: string): boolean {
     return false;
 }
 
-export function depthFirstTraverse(topNode: Node, action: Action): void {
-    const stack: Node[] = [];
+export function depthFirstTraverse(topNode: Person, action: Action): void {
+    const stack: Person[] = [];
     stack.push(topNode);
     while (stack.length > 0) {
-        const currentNode: Node = stack.pop()!
+        const currentNode: Person = stack.pop()!
         action(currentNode);
         stack.push(...currentNode.children);
     }
 }
-export function breadthFirstTraverse(topNode: Node, action: Action): void {
+export function breadthFirstTraverse(topNode: Person, action: Action): void {
 
-    const queue: Node[] = [];
+    const queue: Person[] = [];
     queue.unshift(topNode);
     while (queue.length > 0) {
-        const currentNode: Node = queue.pop()!
+        const currentNode: Person = queue.pop()!
         action(currentNode);
         queue.unshift(...currentNode.children);
     }
 }
 
-export function toGraphViz(topNode: Node): void {
+export function toGraphViz(topNode: Person): void {
     /* Outputs a graphviz dot-format text like this, for nodes, a, b, c, where a is connected to b, and a is connected to c.
     
     digraph mygraph {
@@ -100,7 +96,7 @@ export function toGraphViz(topNode: Node): void {
     */
 
     console.log("digraph mytree {")
-    breadthFirstTraverse(topNode, (n: Node) => console.log('"' + n.value + '"'));
-    breadthFirstTraverse(topNode, (n: Node) => n.children.forEach(c => console.log(`    "${n.value}" -> "${c.value}"`)))
+    breadthFirstTraverse(topNode, (n: Person) => console.log('"' + n.name + '"'));
+    breadthFirstTraverse(topNode, (n: Person) => n.children.forEach(c => console.log(`    "${n.name}" -> "${c.name}"`)))
     console.log("}")
 }
