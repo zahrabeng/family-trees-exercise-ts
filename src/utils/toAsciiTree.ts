@@ -1,5 +1,6 @@
+//ignore this
 import { AsciiTree } from 'oo-ascii-tree';
-import { Person } from './personTypes';
+import { Person } from '../personTypes';
 
 export function printPersonTreeAsAscii(person: Person): void {
     printAsciiTree(personTreeToAsciiTree(person));
@@ -11,6 +12,7 @@ export function personTreeToAsciiTree(person: Person): AsciiTree {
     tree.add(...kids);
     return tree;
 }
+
 export function printAsciiTree(asciiTree: AsciiTree): void {
     asciiTree.printTree();
 }

@@ -1,41 +1,28 @@
 import { createBaratheonTree } from "./families/baratheon";
-import { createBritishSuccessionTree as createBritishSuccessionTree } from "./families/britain";
+import { createBritishSuccessionTree } from "./families/britain";
 import { createLannisterTree } from "./families/lannister";
 import { createStarkTree } from "./families/stark";
-import { createRandomTree, toGraphViz } from "./graph";
-import { logAllPeopleInTree, logAllPeopleInTreeWithQueue } from "./solution";
-import { printPersonTreeAsAscii } from "./toAsciiTree";
-
-
-// cmd-shift-v to view preview of graphviz file
+// import { logAllPeopleInTree, logAllPeopleInTreeWithQueue } from "./solutions/solution";
+import { logAllPeopleInTree, logAllPeopleInTreeWithQueue } from "./treeLogging";
+import { printBanner } from "./utils/bannerUtils";
+import { printPersonTreeAsAscii } from "./utils/toAsciiTree";
 
 async function mainProgram() {
-  const tree = createRandomTree(5);
-  // console.log("DFS")
-  // depthFirstTraverse(tree, n => console.log(n.value));
-  // console.log("BFS")
-  // breadthFirstTraverse(tree, n => console.log(n.value));
-  // toGraphViz(tree);
+  printBanner("BARATHEON");
+  printPersonTreeAsAscii(createBaratheonTree());
 
-  console.log("STARK" + ("=".repeat(40)));
+  printBanner("STARK");
   printPersonTreeAsAscii(createStarkTree());
 
-  console.log("LANNISTER" + ("=".repeat(40)));
+  printBanner("LANNISTER");
   printPersonTreeAsAscii(createLannisterTree());
 
-  console.log("BARATHEON" + ("=".repeat(40)));
-  printPersonTreeAsAscii(createBaratheonTree());
+  printBanner("All people in STARK")
   logAllPeopleInTree(createStarkTree());
 
-  toGraphViz(createStarkTree());
-  // toGraphViz(createLannisterTree());
-  // toGraphViz(createBaratheonTree());
-  toGraphViz(createBritishSuccessionTree());
-  console.log("BRITISH ROYAL SUCCESSION")
-  printPersonTreeAsAscii(createBritishSuccessionTree());
-  console.log("WITH STACK")
+  printBanner("WITH STACK - british royals")
   logAllPeopleInTree(createBritishSuccessionTree());
-  console.log("WITH QUEUE")
+  printBanner("WITH QUEUE - british royals")
   logAllPeopleInTreeWithQueue(createBritishSuccessionTree());
 }
 
